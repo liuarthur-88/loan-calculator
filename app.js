@@ -9,7 +9,7 @@ form.addEventListener('submit', function (e) {
     //Show Loader
     document.getElementById('loading').style.display = 'block';
     
-    setTimeout(calculateResults(e), 2000);
+    calculateResults(e);
     e.preventDefault();
 });
 
@@ -31,20 +31,20 @@ function forYr(nStr)
     return nStr.toString().replace(/\B(?<!\.\d*)(?=(\d{1})+(?!\d))/g, ".");
 }
 
-// LoanAmount.addEventListener('keyup', function() {
-//     var amt = addCommas(LoanAmount.value.replace(',', ''))
-//     document.getElementById('amount').value = amt
-// })
+LoanAmount.addEventListener('keyup', function() {
+    var amt = addCommas(LoanAmount.value.replace(',', ''))
+    document.getElementById('amount').value = amt
+})
 
-// LoanInterest.addEventListener('keyup', function() {
-//     var intrs = addDot(LoanInterest.value.replace('.', ''))
-//     document.getElementById('interest').value = intrs
-// })
+LoanInterest.addEventListener('keyup', function() {
+    var intrs = addDot(LoanInterest.value.replace('.', ''))
+    document.getElementById('interest').value = intrs
+})
 
-// LoanYear.addEventListener('keyup', function() {
-//     var year = forYr(LoanYear.value.replace('.', ''))
-//     document.getElementById('years').value = year
-// })
+LoanYear.addEventListener('keyup', function() {
+    var year = forYr(LoanYear.value.replace('.', ''))
+    document.getElementById('years').value = year
+})
 
 function calculateResults(e) {
     //UI cars
