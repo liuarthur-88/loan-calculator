@@ -1,202 +1,87 @@
-body {
-	font-family: "Open Sans", sans-serif;
-	font-size: 15px;
-	height: 100%;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: #bab5e3;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Reseting */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-a {
-	margin: 0.5rem;
+body{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.container {
-	height: auto;
-	width: 900px;
-	border-radius: 20px;
-	padding: 20px;
-	margin: 50px 0;
-	background-image: linear-gradient(to bottom left, #e4dfec, white, white);
-}
-.sub-container {
-	display: flex;
-	width: 100%;
-	gap: 50px;
-	height: max-content;
+.container{
+    transform-style: preserve-3d;
 }
 
-.sub-container .btn {
-	background-color: #9088D2 !important;
-	border-color: #9088D2 !important;
+.container .box{
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    cursor: pointer;
 }
 
-.sub-container .btn:hover {
-	background-color: #504991 !important;
-	border-color: #504991 !important;
+.container .box .body{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: 0.9s ease;
 }
 
-.header {
-	width: 100%;
-	height: auto;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin-bottom: 30px;
+
+
+.container .box .body .imgContainer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
 }
 
-.header button {
-	height: max-content;
-	width: max-content;
-	padding: 10px;
-	border: none;
-	background-color: transparent;
-	font-size: 35px;
-	color: #9088d2;
+.container .box .body .imgContainer img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.header button:hover {
-	cursor: pointer;
+.container .box .body .content{
+    /* position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #333; */
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    transform: rotateY(180deg);
 }
 
-.view{
-	width: 40%;
-}
-.breakup {
-	width: 35%;
-}
-.details input {
-	width: 100%;
+.container .box:hover .body{
+    transform: rotateY(180deg);
 }
 
-.detail {
-	display: flex;
-	justify-content: space-between;
-}
+/* .container .box .body .content div{
+    transform-style: preserve-3d;
+    padding: 20px;
+    background: linear-gradient(45deg, #FE0061,#FFEB3B);
+    transform: translateZ(100px);
+} */
 
-.footer {
-	display: flex;
-	justify-content: space-between;
-}
-
-/*----- Styling the sliders ----*/
-input[type="range"] {
-	-webkit-appearance: none;
-	margin: 10px 0;
-	width: 100%;
-}
-
-input[type="range"]:focus {
-	outline: none;
-}
-
-input[type="range"]::-webkit-slider-runnable-track {
-	width: 100%;
-	height: 6px;
-	cursor: pointer;
-	background: #9088d2;
-	border-radius: 10px;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-	box-shadow: 2px 2px 5px #b3b3b3, -1px -1px 3px grey;
-	border: 5px solid #ffffff;
-	height: 20px;
-	width: 20px;
-	border-radius: 50%;
-	background: #9088d2;
-	cursor: pointer;
-	margin-top: -6px;
-	-webkit-appearance: none;
-}
-
-input[type="range"]:focus::-webkit-slider-runnable-track {
-	background: #b3b3b3;
-}
-
-input[type="range"]::-moz-range-track {
-	width: 100%;
-	height: 6px;
-	cursor: pointer;
-	background: #9088d2;
-	border-color: transparent;
-	border-width: 16px 0;
-	color: transparent;
-	border-radius: 10px;
-}
-
-input[type="range"]::-moz-range-thumb {
-	box-shadow: 2px 2px 5px #b3b3b3, -1px -1px 3px grey;
-	border: 5px solid #ffffff;
-	height: 20px;
-	width: 20px;
-	border-radius: 50%;
-	background: #9088d2;
-	cursor: pointer;
-	margin-top: -6px;
-}
-
-input[type="range"]::-ms-track {
-	width: 100%;
-	height: 6px;
-	cursor: pointer;
-	background: #9088d2;
-	border-color: transparent;
-	border-width: 16px 0;
-	color: transparent;
-	border-radius: 10px;
-}
-
-input[type="range"]::-ms-fill-lower {
-	background: #9088d2;
-	border-radius: 5px;
-}
-
-input[type="range"]::-ms-fill-upper {
-	background: #9088d2;
-	border-radius: 5px;
-}
-
-input[type="range"]::-ms-thumb {
-	box-shadow: 2px 2px 5px #b3b3b3, -1px -1px 3px grey;
-	border: 5px solid #ffffff;
-	height: 20px;
-	width: 20px;
-	border-radius: 50%;
-	background: #9088d2;
-	cursor: pointer;
-	margin-top: -6px;
-}
-
-input[type="range"]:focus::-ms-fill-lower {
-	background: #9088d2;
-}
-
-input[type="range"]:focus::-ms-fill-upper {
-	background: #9088d2;
-}
-
-/*-------------------------------------*/
-#price {
-	color: #130f31;
-	font-size: 17px;
-}
-
-.loan-details {
-	width: 20%;
-	justify-content: space-between;
-	gap: 30px;
-}
-
-#price-container {
-	color: #9088d2;
-	margin-top: 50px;
-}
-
-#price-container::before {
-	content: "Monthly Payable:";
-	font-size: 12px;
-	display: block;
-}
+/* .container .box .body .content div h3{
+    letter-spacing: 1px;
+} */
