@@ -15,23 +15,19 @@ form.addEventListener('submit', function (e) {
 
 function addCommas(nStr)
 {
-    console.log(nStr.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
     return nStr.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 }
 
 function addDot(nStr)
 {
     if (nStr.length <= 2) {
-        console.log(nStr.toString().replace(/\B(?<!\.\d*)(?=(\d{1})+(?!\d))/g, "."))
         return nStr.toString().replace(/\B(?<!\.\d*)(?=(\d{1})+(?!\d))/g, ".");
     }
-    console.log(nStr.toString().replace(/\B(?<!\.\d*)(?=(\d{2})+(?!\d))/g, "."))
     return nStr.toString().replace(/\B(?<!\.\d*)(?=(\d{2})+(?!\d))/g, ".");
 }
 
 function forYr(nStr)
 {
-    console.log(nStr.toString().replace(/\B(?<!\.\d*)(?=(\d{1})+(?!\d))/g, "."))
     return nStr.toString().replace(/\B(?<!\.\d*)(?=(\d{1})+(?!\d))/g, ".");
 }
 
