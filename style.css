@@ -8,7 +8,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body{
+body {
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -21,8 +21,8 @@ body{
 
 .container .box{
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 500px;
+    height: 500px;
     margin: 20px;
     transform-style: preserve-3d;
     perspective: 1000px;
@@ -41,39 +41,45 @@ body{
 
 
 
-.container .box .body .imgContainer{
+.container .box .body .frontContainer{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    backface-visibility: hidden;
     transform-style: preserve-3d;
 }
 
-.container .box .body .imgContainer img{
+/* .container .box .body .fContainer img{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
+} */
 
 .container .box .body .content{
-    /* position: absolute;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: #333; */
+    /*background: #333; */
     backface-visibility: hidden;
     transform-style: preserve-3d;
     transform: rotateY(180deg);
 }
 
-.container .box:hover .body{
-    transform: rotateY(180deg);
+.card-body {
+    width: 100%;
+    height: 100%;
 }
+
+/* .container .box:hover .body{
+    transform: rotateY(180deg);
+} */
 
 /* .container .box .body .content div{
     transform-style: preserve-3d;
