@@ -24,12 +24,12 @@
     <div class="container d-flex align-items-center justify-content-center flex-wrap">
         <div class="box">
             <div id="main-body" class="body">
-                <div class="fContainer">
+                <div id="fContainer">
                     <div class="card card-body front-card">
                         <h1 class="heading display-5 pb-3 text-center">Eligible Calculator</h1>
                         <form id="loan-form">
-                            <div class="row mb-4">
-                                <div class="col">
+                            <div class="row">
+                                <div class="col-sm">
                                     <div class="form-group">
                                         <label class="text-start form-label">Basic: </label>
                                         <div class="input-group">
@@ -38,7 +38,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div class="col-sm">
                                     <div class="form-group">
                                         <label class="text-start form-label">Fixed Allowance: </label>
                                         <div class="input-group">
@@ -49,18 +49,18 @@
                                 </div>
                             </div>
                             <div class="row mb-4">
-                                <div class="col">
+                                <div class="col-sm">
                                     <div class="form-group">
                                         <label class="text-start form-label">Existing Deduction: </label>
                                         <div class="input-group">
                                             <span class="input-group-text">MYR</span>
                                             <input type="text" class="form-control" id="existd">
                                         </div>
-                                    </div>  
+                                    </div>
                                 </div>
                             </div>
                             <div class="row mb-4">
-                                <div class="col">
+                                <div class="col-sm">
                                     <div class="form-group">
                                         <label class="text-start form-label">Term: </label>
                                         <div class="input-group">
@@ -69,36 +69,37 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div class="col-sm">
                                     <div class="form-group">
-                                        <label class="text-start form-label">Interest Rate(%): </label>
+                                        <label class="text-start form-label">Interest: </label>
                                         <div class="input-group">
                                             <input type="text" class="form-control" id="intera">
                                             <span class="input-group-text">%</span>
                                         </div>
                                     </div>
                                 </div>
-                            </div>    
-                            <div class="form-group">
-                                <input id="custcalcu" value="Calculator" class="btn btn-dark btn-block">
                             </div>
-                        </form>
+                        </form>                        
+                        <div class="form-group">
+                            <div id="custcalcu" class="btn btn-dark btn-block rounded-pill">Calculator</div>
+                        </div>
                     </div>
                 </div>
                 <!--Front Side-->
 
                 <!--Back Side-->
-                <div class="content d-flex flex-column align-items-center justify-content-center">
+                <div id="bContainer" class="content d-flex flex-column align-items-center justify-content-center">
                     <div class="card card-body back-card">
-                        <h1 class="heading display-5 pb-3 text-center back-heading">Loan Calculator</h1>
-                        <form action="" id="loan-form">                            
+                        <h1 class="heading display-5 text-center back-heading">Loan Calculator</h1>
+                        <form id="loan-result">
                             <div class="form-group">
                                 <label class="text-start form-label">Eligible Amount: </label>
                                 <div class="input-group">
                                     <span class="input-group-text">MYR</span>
-                                    <input type="text" class="form-control" id="eligAmount" placeholder="Loan amount" disabled>
+                                    <input type="text" class="form-control" id="eligAmount" placeholder="Loan amount"
+                                        disabled>
                                 </div>
-                            </div>  
+                            </div>
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-text">MYR</span>
@@ -106,41 +107,40 @@
                                         maxlength="7">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-text">%</span>
-                                    <input type="decimal" class="form-control" id="interest" placeholder="Interest rate" disabled>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input type="decimal" class="form-control" id="years" placeholder="Years to repay" disabled>
-                                    <span class="input-group-text">/ years</span>
-                                </div>
-                            </div>
                             <div class="row mb-4">
-                                <div class="col">
+                                <div class="col-sm">
                                     <div class="form-group">
-                                        <input id="paycalcu" value="Calculator" class="btn btn-dark btn-block">
+                                        <div class="input-group">
+                                            <span class="input-group-text">%</span>
+                                            <input type="decimal" class="form-control" id="interest"
+                                                placeholder="Interest rate" disabled>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div class="col-sm">
                                     <div class="form-group">
-                                        <input id="back" value="Back" class="btn btn-light btn-block">
+                                        <div class="input-group">
+                                            <input type="decimal" class="form-control" id="years"
+                                                placeholder="Years to repay" disabled>
+                                            <span class="input-group-text">/ years</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </form>
-                        <!-- Loader Here -->
-                        <div id="loading" class="spinner-border" role="status">
-                            <span class="sr-only">Loading...</span>
+                        
+                        <div class="form-group">
+                            <div id="paycalcu" class="btn btn-dark btn-block rounded-pill">Calculator</div>
+                        </div>
+                        <div class="form-group">
+                            <div id="returnCus" class="btn btn-light btn-block rounded-pill">Back</div>
                         </div>
                         <!-- Results -->
                         <div id="results">
                             <h5>Results</h5>
-                            <div class="form-group">
+                            <div class="row mb-4 form-group">
                                 <div class="input-group">
-                                    <span class="input-group-text">Installment</span>
+                                    <span class="col-sm input-group-text">Installment</span>
                                     <input type="text" class="form-control" id="monthly-payment" disabled>
                                     <span class="input-group-text">/ months</span>
                                 </div>
@@ -149,7 +149,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <!--Back Side-->
     </div>

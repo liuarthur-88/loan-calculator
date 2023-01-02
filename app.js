@@ -1,5 +1,10 @@
-//Customer page
+const MBody = document.getElementById('main-body');
 
+
+//Customer page
+const FContainer = document.getElementById('fContainer');
+const CSSHeight = FContainer.clientHeight;
+const LoanForm =  document.getElementById('loan-form');
 const CBasic = document.getElementById('basic');
 const CFixed = document.getElementById('fixedal');
 const CDeduct = document.getElementById('existd');
@@ -7,15 +12,17 @@ const CTerm = document.getElementById('term');
 const CIntrest = document.getElementById('intera');
 
 // Loan Calculator page
+const BContainer = document.getElementById('bContainer');
 const LoanEligAmount = document.getElementById('eligAmount');
 const LoanAmount = document.getElementById('amount');
 const LoanInterest = document.getElementById('interest');
 const LoanYear = document.getElementById('years');
+const LoanResult = document.getElementById('results');
 
 // Button
 const CustCal = document.getElementById('custcalcu');
 const PayCal = document.getElementById('paycalcu');
-const Back = document.getElementById('back');
+const BackCus = document.getElementById('returnCus');
 
 function addCommas(nStr)
 {
@@ -35,11 +42,9 @@ function forYr(nStr)
     return nStr.toString().replace(/\B(?<!\.\d*)(?=(\d{1})+(?!\d))/g, ".");
 }
 
-function showError(error) {
+function showError(error, pages) {
     //Show Results
-    document.getElementById('results').style.display = 'none';
-    //Hide Loader
-    document.getElementById('loading').style.display = 'none';
+    LoanResult.style.display = 'none';
     //--------------------------------------------------------------------
     //Create a div
     const errorDiv = document.createElement('div');
@@ -67,9 +72,9 @@ function calculatedEligible(e) {
     const CIntert = 1 + (parseFloat(CIntrest.value) / 100 * parseFloat(CTerm.value))
     const CMaxElig = CBalance * (parseFloat(CTerm.value) * 12) / CIntert
 
-    console.log(CBasic.value, CFixed.value, CDeduct.value, CIntrest.value, CTerm.value)
-
     return CMaxElig.toFixed(2)
+
+    e.preventDefault();
 
 }
 
@@ -99,37 +104,44 @@ function calculateResults(e) {
         ELMonthly_payment.value = 'MYR ' + (calculatedPayment).toFixed(2).toString();
 
         //Show Results
-        document.getElementById('results').style.display = 'block';
-        //Hide Loader
-        document.getElementById('loading').style.display = 'none';
+        LoanResult.style.display = 'block';
     } else {
-        showError('Plase check your number');
+        showError('Invalid Amount');
     }
 
     e.preventDefault();
 }
 
-Back.addEventListener('click', function() {
-    document.getElementById('main-body').style.transform = 'rotateY(0deg)';
+BackCus.addEventListener('click', function(e) {
+
+    LoanForm.style.display = 'block';
+    LoanResult.style.display = 'none';
+    MBody.style.transform = 'rotateY(0deg)';
+
+    e.preventDefault();
 })
 
-CustCal.addEventListener('click', function(e) {
+CustCal.addEventListener('click', function(e) {      
+
     var eligAmount = calculatedEligible(e)
     eligAmount = addCommas(eligAmount)
-    document.getElementById('eligAmount').value = eligAmount
-    document.getElementById('interest').value = parseFloat(CIntrest.value)
-    document.getElementById('years').value = parseFloat(CTerm.value)
 
-    document.getElementById('main-body').style.transform = 'rotateY(180deg)';
+    LoanEligAmount.value = eligAmount
+    LoanInterest.value = parseFloat(CIntrest.value)
+    LoanYear.value = parseFloat(CTerm.value)
 
+    // Turning card
+    
+    setTimeout(function() {LoanForm.style.display = 'none'}, 1000);
+
+    BContainer.style.height = CSSHeight + 'px';
+    MBody.style.transform = 'rotateY(180deg)';
     e.preventDefault();
 })
 
 PayCal.addEventListener('click', function (e) {
     // //Hide Results
-    document.getElementById('results').style.display = 'none';
-    // //Show Loader
-    document.getElementById('loading').style.display = 'block';
+    LoanResult.style.display = 'none';
     
     calculateResults(e);
     e.preventDefault();

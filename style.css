@@ -23,10 +23,16 @@ body {
     position: relative;
     width: 500px;
     height: 500px;
-    margin: 20px;
+    margin: 10px;
     transform-style: preserve-3d;
     perspective: 1000px;
     cursor: pointer;
+}
+
+@media (max-width:'320px') {    
+    .container .box{
+        margin: 0px;
+    }
 }
 
 .container .box .body{
@@ -51,21 +57,11 @@ body {
     transform-style: preserve-3d;
 }
 
-/* .container .box .body .fContainer img{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-} */
-
 .container .box .body .content{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
     /*background: #333; */
     backface-visibility: hidden;
     transform-style: preserve-3d;
@@ -76,18 +72,3 @@ body {
     width: 100%;
     height: 100%;
 }
-
-/* .container .box:hover .body{
-    transform: rotateY(180deg);
-} */
-
-/* .container .box .body .content div{
-    transform-style: preserve-3d;
-    padding: 20px;
-    background: linear-gradient(45deg, #FE0061,#FFEB3B);
-    transform: translateZ(100px);
-} */
-
-/* .container .box .body .content div h3{
-    letter-spacing: 1px;
-} */
