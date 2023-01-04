@@ -50,6 +50,11 @@ function forYr(nStr)
     }
 }
 
+function roundDownHundred(nStr) 
+{
+    return Math.floor(nStr / 100) * 100;
+}
+
 function showError(error, pages) {
     //Show Results
     LoanResult.style.display = 'none';
@@ -132,6 +137,7 @@ BackCus.addEventListener('click', function(e) {
 CustCal.addEventListener('click', function(e) {      
 
     var eligAmount = calculatedEligible(e)
+    eligAmount = roundDownHundred(eligAmount)
     eligAmount = addCommas(eligAmount)
 
     LoanEligAmount.value = eligAmount
