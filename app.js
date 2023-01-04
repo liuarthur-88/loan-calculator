@@ -1,57 +1,78 @@
-const MBody = document.getElementById('main-body');
-
+let MBody = document.getElementById('main-body');
 
 //Customer page
-const FContainer = document.getElementById('fContainer');
-const CSSHeight = FContainer.clientHeight;
-const LoanForm =  document.getElementById('loan-form');
-const CBasic = document.getElementById('basic');
-const CFixed = document.getElementById('fixedal');
-const CDeduct = document.getElementById('existd');
-const CTerm = document.getElementById('term');
-const CIntrest = document.getElementById('intera');
+let FContainer = document.getElementById('fContainer');
+let CSSHeight = FContainer.clientHeight;
+
+let LoanForm = document.getElementById('loan-form');
+let CBasic = document.getElementById('basic');
+let CFixed = document.getElementById('fixedal');
+let CDeduct = document.getElementById('existd');
+let CTerm = document.getElementById('term');
+let CIntrest = document.getElementById('intera');
 
 // Loan Calculator page
-const BContainer = document.getElementById('bContainer');
-const LoanEligAmount = document.getElementById('eligAmount');
-const LoanAmount = document.getElementById('amount');
-const LoanInterest = document.getElementById('interest');
-const LoanYear = document.getElementById('years');
-const LoanResult = document.getElementById('results');
+let BContainer = document.getElementById('bContainer');
+BContainer.style.height = CSSHeight + 30 + 'px';
+
+let LoanEligAmount = document.getElementById('eligAmount');
+let LoanAmount = document.getElementById('amount');
+let LoanInterest = document.getElementById('interest');
+let LoanYear = document.getElementById('years');
+let LoanResult = document.getElementById('results');
 
 // Button
-const CustCal = document.getElementById('custcalcu');
-const PayCal = document.getElementById('paycalcu');
-const BackCus = document.getElementById('returnCus');
+let CustCal = document.getElementById('custcalcu');
+let PayCal = document.getElementById('paycalcu');
+let BackCus = document.getElementById('returnCus');
 
-function addCommas(nStr)
-{
-    return nStr.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-}
 
-function addDot(nStr)
-{
-    if (nStr.length <= 2) {
-        return nStr.toString().replace(/\B(?<!\.\d*)(?=(\d{1})+(?!\d))/g, ".");
+function addCommas(nStr) {
+    nStr += '';
+    var x = nStr.split('.');
+    var x1 = x[0];
+    var x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + ',' + '$2');
     }
-    return nStr.toString().replace(/\B(?<!\.\d*)(?=(\d{2})+(?!\d))/g, ".");
+    return x1 + x2;
 }
 
-function forYr(nStr)
-{
-    if (nStr >= 100){
-        return 10 
-    }    
+function addDot(nStr) {
+    nStr += '';
+    var x = nStr.split('.');
+    var x1 = x[0];
+    var x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{2})/;
+    while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + '.' + '$2');
+    }
+    return x1 + x2;
+}
+
+function forYr(nStr) {
+    if (nStr >= 100) {
+        return 10
+    }
     else if (nStr != 10) {
-        return nStr.toString().replace(/\B(?<!\.\d*)(?=(\d{1})+(?!\d))/g, ".");
-    }  
+        
+        nStr += '';
+        var x = nStr.split('.');
+        var x1 = x[0];
+        var x2 = x.length > 1 ? '.' + x[1] : '';
+        var rgx = /(\d+)(\d{1})/;
+        while (rgx.test(x1)) {
+                x1 = x1.replace(rgx, '$1' + '.' + '$2');
+        }
+        return x1 + x2;
+    }
     else {
         return 10
     }
 }
 
-function roundDownHundred(nStr) 
-{
+function roundDownHundred(nStr) {
     return Math.floor(nStr / 100) * 100;
 }
 
@@ -60,10 +81,10 @@ function showError(error, pages) {
     LoanResult.style.display = 'none';
     //--------------------------------------------------------------------
     //Create a div
-    const errorDiv = document.createElement('div');
+    let errorDiv = document.createElement('div');
     //get elements
-    const ELcard = document.querySelector('.back-card');
-    const ELheading = document.querySelector('.back-heading');
+    let ELcard = document.querySelector('.back-card');
+    let ELheading = document.querySelector('.back-heading');
     //Add class
     errorDiv.className = 'alert alert-danger';
     //create text node and append to dic
@@ -79,11 +100,11 @@ function clearError() {
 }
 
 function calculatedEligible(e) {
-    
-    const CTotalIncome = parseFloat(CBasic.value.replace(/,/g, '')) + parseFloat(CFixed.value.replace(/,/g, ''))
-    const CBalance = (CTotalIncome * 60 / 100) - parseFloat(CDeduct.value.replace(/,/g, ''))
-    const CIntert = 1 + (parseFloat(CIntrest.value) / 100 * parseFloat(CTerm.value))
-    const CMaxElig = CBalance * (parseFloat(CTerm.value) * 12) / CIntert
+
+    let CTotalIncome = parseFloat(CBasic.value.replace(/,/g, '')) + parseFloat(CFixed.value.replace(/,/g, ''))
+    let CBalance = (CTotalIncome * 60 / 100) - parseFloat(CDeduct.value.replace(/,/g, ''))
+    let CIntert = 1 + (parseFloat(CIntrest.value) / 100 * parseFloat(CTerm.value))
+    let CMaxElig = CBalance * (parseFloat(CTerm.value) * 12) / CIntert
 
     return CMaxElig.toFixed(2)
 
@@ -93,25 +114,25 @@ function calculatedEligible(e) {
 
 function calculateResults(e) {
     //UI cars
-    
-    const ELLoanamount = document.getElementById('eligAmount');
-    const ELamount = document.getElementById('amount');
-    const ELinterest = document.getElementById('interest');
-    const ELyears = document.getElementById('years');
-    const ELMonthly_payment = document.getElementById('monthly-payment');
 
-    const principal = parseFloat(ELamount.value.replace(',', ''));
+    let ELLoanamount = document.getElementById('eligAmount');
+    let ELamount = document.getElementById('amount');
+    let ELinterest = document.getElementById('interest');
+    let ELyears = document.getElementById('years');
+    let ELMonthly_payment = document.getElementById('monthly-payment');
 
-    if (parseFloat(ELamount.value) > parseFloat(ELLoanamount.value)){
+    let principal = parseFloat(ELamount.value.replace(',', ''));
+
+    if (parseFloat(ELamount.value) > parseFloat(ELLoanamount.value)) {
         showError("Loan amount greater than Eligible Amount")
         return;
     }
 
-    const calculatedInterest = parseFloat(principal) * parseFloat(ELinterest.value) / 100 * parseFloat(ELyears.value);
-    const calculatedTotal = calculatedInterest + principal
-    const calculatedMonth = parseFloat(ELyears.value) * 12
-    const calculatedPayment = calculatedTotal / calculatedMonth;
-    
+    let calculatedInterest = parseFloat(principal) * parseFloat(ELinterest.value) / 100 * parseFloat(ELyears.value);
+    let calculatedTotal = calculatedInterest + principal
+    let calculatedMonth = parseFloat(ELyears.value) * 12
+    let calculatedPayment = calculatedTotal / calculatedMonth;
+
     if (isFinite(calculatedMonth)) {
 
         ELMonthly_payment.value = 'MYR ' + (calculatedPayment).toFixed(2).toString();
@@ -125,30 +146,39 @@ function calculateResults(e) {
     e.preventDefault();
 }
 
-BackCus.addEventListener('click', function(e) {
+BackCus.addEventListener('click', function (e) {
 
-    LoanForm.style.display = 'block';
+    setTimeout(function () {
+        document.getElementById('loan-result').style.display = 'none'
+    }
+        , 1000
+    );
+
+    FContainer.style.display = 'block';
     LoanResult.style.display = 'none';
     MBody.style.transform = 'rotateY(0deg)';
 
     e.preventDefault();
 })
 
-CustCal.addEventListener('click', function(e) {      
+CustCal.addEventListener('click', function (e) {
 
     var eligAmount = calculatedEligible(e)
+    console.log
     eligAmount = roundDownHundred(eligAmount)
     eligAmount = addCommas(eligAmount)
-
+    console.log(eligAmount)
     LoanEligAmount.value = eligAmount
     LoanInterest.value = parseFloat(CIntrest.value)
     LoanYear.value = parseFloat(CTerm.value)
 
     // Turning card
-    
-    setTimeout(function() {LoanForm.style.display = 'none'}, 1000);
-
-    BContainer.style.height = CSSHeight + 30 + 'px';
+    setTimeout(function () {
+        FContainer.style.display = 'none'
+    }
+        , 100
+    );
+    document.getElementById('loan-result').style.display = 'block';
     MBody.style.transform = 'rotateY(180deg)';
     e.preventDefault();
 })
@@ -156,38 +186,37 @@ CustCal.addEventListener('click', function(e) {
 PayCal.addEventListener('click', function (e) {
     // //Hide Results
     LoanResult.style.display = 'none';
-    
+
     calculateResults(e);
     e.preventDefault();
 });
 
-CBasic.addEventListener('keyup', function() {
+CBasic.addEventListener('keyup', function () {
     var amt = addCommas(CBasic.value.replace(',', ''))
     CBasic.value = amt
 })
 
-CDeduct.addEventListener('keyup', function() {
+CDeduct.addEventListener('keyup', function () {
     var amt = addCommas(CDeduct.value.replace(',', ''))
     CDeduct.value = amt
 })
 
-CFixed.addEventListener('keyup', function() {
+CFixed.addEventListener('keyup', function () {
     var amt = addCommas(CFixed.value.replace(',', ''))
     CFixed.value = amt
 })
 
-LoanAmount.addEventListener('keyup', function() {
+LoanAmount.addEventListener('keyup', function () {
     var amt = addCommas(LoanAmount.value.replace(',', ''))
     LoanAmount.value = amt
 })
 
-CIntrest.addEventListener('keyup', function() {
+CIntrest.addEventListener('keyup', function () {
     var intrs = addDot(CIntrest.value.replace('.', ''))
     CIntrest.value = intrs
 })
 
-CTerm.addEventListener('keyup', function() {
+CTerm.addEventListener('keyup', function () {
     var year = forYr(CTerm.value.replace('.', ''))
     CTerm.value = year
 })
-
