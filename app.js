@@ -148,7 +148,7 @@ CustCal.addEventListener('click', function(e) {
     
     setTimeout(function() {LoanForm.style.display = 'none'}, 1000);
 
-    BContainer.style.height = CSSHeight + 'px';
+    BContainer.style.height = CSSHeight + 30 + 'px';
     MBody.style.transform = 'rotateY(180deg)';
     e.preventDefault();
 })
