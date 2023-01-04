@@ -121,17 +121,20 @@ function calculateResults(e) {
     let ELyears = document.getElementById('years');
     let ELMonthly_payment = document.getElementById('monthly-payment');
 
-    let principal = parseFloat(ELamount.value.replace(',', ''));
+    let principal = ELamount.value.replace(',', '').replace(',', '');
+    let EligAmount = ELLoanamount.value.replace(',', '').replace(',', '');
 
-    if (parseFloat(ELamount.value) > parseFloat(ELLoanamount.value)) {
+
+    if (parseFloat(principal) > parseFloat(EligAmount)) {
         showError("Loan amount greater than Eligible Amount")
         return;
     }
 
-    let calculatedInterest = parseFloat(principal) * parseFloat(ELinterest.value) / 100 * parseFloat(ELyears.value);
-    let calculatedTotal = calculatedInterest + principal
+    let calculatedInterest = parseFloat(principal) * parseFloat(ELyears.value) * (parseFloat(ELinterest.value) / 100);
+    let calculatedTotal = parseFloat(calculatedInterest) + parseFloat(principal)
     let calculatedMonth = parseFloat(ELyears.value) * 12
-    let calculatedPayment = calculatedTotal / calculatedMonth;
+    let calculatedPayment = parseFloat(calculatedTotal) / parseFloat(calculatedMonth);
+    console.log(calculatedMonth)
 
     if (isFinite(calculatedMonth)) {
 
