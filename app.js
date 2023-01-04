@@ -39,8 +39,14 @@ function addDot(nStr)
 
 function forYr(nStr)
 {
-    if (nStr != 10) {
+    if (nStr >= 100){
+        return 10 
+    }    
+    else if (nStr != 10) {
         return nStr.toString().replace(/\B(?<!\.\d*)(?=(\d{1})+(?!\d))/g, ".");
+    }  
+    else {
+        return 10
     }
 }
 
