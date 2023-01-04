@@ -134,7 +134,6 @@ function calculateResults(e) {
     let calculatedTotal = parseFloat(calculatedInterest) + parseFloat(principal)
     let calculatedMonth = parseFloat(ELyears.value) * 12
     let calculatedPayment = parseFloat(calculatedTotal) / parseFloat(calculatedMonth);
-    console.log(calculatedMonth)
 
     if (isFinite(calculatedMonth)) {
 
@@ -167,10 +166,9 @@ BackCus.addEventListener('click', function (e) {
 CustCal.addEventListener('click', function (e) {
 
     var eligAmount = calculatedEligible(e)
-    console.log
     eligAmount = roundDownHundred(eligAmount)
     eligAmount = addCommas(eligAmount)
-    console.log(eligAmount)
+    
     LoanEligAmount.value = eligAmount
     LoanInterest.value = parseFloat(CIntrest.value)
     LoanYear.value = parseFloat(CTerm.value)
