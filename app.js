@@ -39,7 +39,9 @@ function addDot(nStr)
 
 function forYr(nStr)
 {
-    return nStr.toString().replace(/\B(?<!\.\d*)(?=(\d{1})+(?!\d))/g, ".");
+    if (nStr != 10) {
+        return nStr.toString().replace(/\B(?<!\.\d*)(?=(\d{1})+(?!\d))/g, ".");
+    }
 }
 
 function showError(error, pages) {
