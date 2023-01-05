@@ -4,7 +4,6 @@ let MBody = document.getElementById('main-body');
 let FContainer = document.getElementById('fContainer');
 let CSSHeight = FContainer.clientHeight;
 
-let LoanForm = document.getElementById('loan-form');
 let CBasic = document.getElementById('basic');
 let CFixed = document.getElementById('fixedal');
 let CDeduct = document.getElementById('existd');
