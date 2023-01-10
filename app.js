@@ -197,22 +197,22 @@ PayCal.addEventListener('click', function (e) {
 });
 
 CBasic.addEventListener('keyup', function () {
-    var amt = addCommas(CBasic.value.replace(',', ''))
+    var amt = addCommas(CBasic.value.replace(',', '').replace(',', '').replace('.', ''))
     CBasic.value = amt
 })
 
 CDeduct.addEventListener('keyup', function () {
-    var amt = addCommas(CDeduct.value.replace(',', ''))
+    var amt = addCommas(CDeduct.value.replace(',', '').replace(',', '').replace('.', ''))
     CDeduct.value = amt
 })
 
 CFixed.addEventListener('keyup', function () {
-    var amt = addCommas(CFixed.value.replace(',', ''))
+    var amt = addCommas(CFixed.value.replace(',', '').replace(',', '').replace('.', ''))
     CFixed.value = amt
 })
 
 LoanAmount.addEventListener('keyup', function () {
-    var amt = addCommas(LoanAmount.value.replace(',', ''))
+    var amt = addCommas(LoanAmount.value.replace(',', '').replace(',', '').replace('.', ''))
     LoanAmount.value = amt
 })
 
