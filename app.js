@@ -31,10 +31,15 @@ function addCommas(nStr) {
     var x = nStr.split('.');
     var x1 = x[0];
     var x2 = x.length > 1 ? '.' + x[1] : '';
-    var rgx = /(\d+)(\d{3})/;
-    while (rgx.test(x1)) {
-            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    
+    var dot = /(\d+)(\d{2})/;
+    var com = /(\d+)(\d{3})/;
+
+    while (com.test(x1)) {
+        x1 = x1.replace(dot, '$1' + '.' + '$2');
+        x1 = x1.replace(com, '$1' + ',' + '$2');
     }
+    
     return x1 + x2;
 }
 
