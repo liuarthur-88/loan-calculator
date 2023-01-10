@@ -31,7 +31,6 @@ function addCommas(nStr) {
     var x = nStr.split('.');
     var x1 = x[0];
     var x2 = x.length > 1 ? '.' + x[1] : '';
-    
     var dot = /(\d+)(\d{2})/;
     var com = /(\d+)(\d{3})/;
 
@@ -39,7 +38,7 @@ function addCommas(nStr) {
         x1 = x1.replace(dot, '$1' + '.' + '$2');
         x1 = x1.replace(com, '$1' + ',' + '$2');
     }
-    
+
     return x1 + x2;
 }
 
@@ -50,24 +49,25 @@ function addDot(nStr) {
     var x2 = x.length > 1 ? '.' + x[1] : '';
     var rgx = /(\d+)(\d{2})/;
     while (rgx.test(x1)) {
-            x1 = x1.replace(rgx, '$1' + '.' + '$2');
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
     }
     return x1 + x2;
 }
 
 function forYr(nStr) {
+
     if (nStr >= 100) {
         return 10
     }
     else if (nStr != 10) {
-        
+
         nStr += '';
         var x = nStr.split('.');
         var x1 = x[0];
         var x2 = x.length > 1 ? '.' + x[1] : '';
         var rgx = /(\d+)(\d{1})/;
         while (rgx.test(x1)) {
-                x1 = x1.replace(rgx, '$1' + '.' + '$2');
+            x1 = x1.replace(rgx, '$1' + '.' + '$2');
         }
         return x1 + x2;
     }
@@ -172,7 +172,7 @@ CustCal.addEventListener('click', function (e) {
     var eligAmount = calculatedEligible(e)
     eligAmount = roundDownHundred(eligAmount)
     eligAmount = addCommas(eligAmount)
-    
+
     LoanEligAmount.value = eligAmount
     LoanInterest.value = parseFloat(CIntrest.value)
     LoanYear.value = parseFloat(CTerm.value)
