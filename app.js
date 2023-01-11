@@ -26,7 +26,7 @@ let PayCal = document.getElementById('paycalcu');
 let BackCus = document.getElementById('returnCus');
 
 
-function addCommas(nStr) {
+function addCommas(nStr, format) {
     nStr += '';
     var x = nStr.split('.');
     var x1 = x[0];
@@ -34,9 +34,16 @@ function addCommas(nStr) {
     var dot = /(\d+)(\d{2})/;
     var com = /(\d+)(\d{3})/;
 
-    while (com.test(x1)) {
-        x1 = x1.replace(dot, '$1' + '.' + '$2');
-        x1 = x1.replace(com, '$1' + ',' + '$2');
+    if (format == 1) {
+        while (com.test(x1)) {
+            x1 = x1.replace(com, '$1' + ',' + '$2');
+        }
+    }
+    else if (format == 2) {
+        while (com.test(x1)) {
+            x1 = x1.replace(dot, '$1' + '.' + '$2');
+            x1 = x1.replace(com, '$1' + ',' + '$2');
+        }
     }
 
     return x1 + x2;
@@ -171,7 +178,7 @@ CustCal.addEventListener('click', function (e) {
 
     var eligAmount = calculatedEligible(e)
     eligAmount = roundDownHundred(eligAmount)
-    eligAmount = addCommas(eligAmount)
+    eligAmount = addCommas(eligAmount, 1)
 
     LoanEligAmount.value = eligAmount
     LoanInterest.value = parseFloat(CIntrest.value)
@@ -197,22 +204,22 @@ PayCal.addEventListener('click', function (e) {
 });
 
 CBasic.addEventListener('keyup', function () {
-    var amt = addCommas(CBasic.value.replace(',', '').replace(',', '').replace('.', ''))
+    var amt = addCommas(CBasic.value.replace(',', '').replace(',', '').replace('.', ''), 2)
     CBasic.value = amt
 })
 
 CDeduct.addEventListener('keyup', function () {
-    var amt = addCommas(CDeduct.value.replace(',', '').replace(',', '').replace('.', ''))
+    var amt = addCommas(CDeduct.value.replace(',', '').replace(',', '').replace('.', ''), 2)
     CDeduct.value = amt
 })
 
 CFixed.addEventListener('keyup', function () {
-    var amt = addCommas(CFixed.value.replace(',', '').replace(',', '').replace('.', ''))
+    var amt = addCommas(CFixed.value.replace(',', '').replace(',', '').replace('.', ''), 2)
     CFixed.value = amt
 })
 
 LoanAmount.addEventListener('keyup', function () {
-    var amt = addCommas(LoanAmount.value.replace(',', '').replace(',', '').replace('.', ''))
+    var amt = addCommas(LoanAmount.value.replace(',', '').replace(',', '').replace('.', ''), 2)
     LoanAmount.value = amt
 })
 
